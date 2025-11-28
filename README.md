@@ -63,3 +63,40 @@ Setup Notes
    
 3. Clone repo into Nautilus
    
+## Docker Image: Build & Push to GitHub Container Registry (GHCR)
+
+This project ships as a Docker image published to **GitHub Container Registry (GHCR)**:
+
+`ghcr.io/benclark772/8420_module_5:latest`
+
+You can either:
+
+1. **Build & push the image manually** from your local machine, or  
+2. **Let GitHub Actions build & push automatically** whenever you push to `main`.
+
+---
+
+### 1. Manual Build & Push
+
+#### 1.1 Prerequisites
+
+- **Docker** installed and running (Docker Desktop on Windows/macOS is fine)
+- A **GitHub Personal Access Token (classic)** with scopes:
+  - `read:packages`
+  - `write:packages`
+  - (optional) `delete:packages` if you need to delete images
+
+> ⚠️ Never commit your token to Git, scripts, or share it in screenshots.
+
+---
+
+#### 1.2 Log in to GHCR
+
+From a terminal (bash example):
+
+```bash
+# Replace with your GitHub username and PAT
+export GHCR_USER="benclark772"
+export GHCR_PAT="<YOUR_GHCR_PAT>"
+
+echo "$GHCR_PAT" | docker login ghcr.io -u "$GHCR_USER" --password-stdin
