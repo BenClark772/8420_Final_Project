@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prophet-test
+  namespace: gp-engine-mizzou-dsa-cloud
+spec:
+  backoffLimit: 2
+  template:
+    spec:
+      restartPolicy: Never
+      containers:
+        - name: prophet-test
+          image: ghcr.io/benclark772/8420_module_5:latest
+          imagePullPolicy: Always
+          # Later: switch this to your real script
+          # command: ["python", "run_forecast.py"]
+          resources:
+            requests:
+              cpu: "1"
+              memory: "2Gi"
+            limits:
+              cpu: "2"
+              memory: "4Gi"
